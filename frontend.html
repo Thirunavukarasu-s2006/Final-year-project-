@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Complaint Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-wrapper">
+            <h2>Register a Complaint</h2>
+            <p>Please fill out the form below to submit your complaint.</p>
+            
+            <form action="submit_complaint.php" method="POST">
+                
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Complaint Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="e.g., Service Issue, Product Defect" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Complaint Details</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Describe your complaint in detail..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Complaint</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
