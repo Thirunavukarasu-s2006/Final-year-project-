@@ -37,24 +37,18 @@
         <p id="status" style="margin-top:10px; font-weight:bold;"></p>
     </div>
 
-    <script>
-        // --- PASTE YOUR SUPABASE KEYS HERE ---
-        const supabaseUrl = 'YOUR_SUPABASE_URL_HERE'; 
-        const supabaseKey = 'YOUR_SUPABASE_KEY_HERE'; 
-        // -------------------------------------
-
+    <script>       
+        const supabaseUrl = 'https://ujosqevwywohwcprkngb.supabase.co'; 
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVqb3NxZXZ3eXdvaHdjcHJrbmdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxMDA1MjYsImV4cCI6MjA4NTY3NjUyNn0.BCwutZ9xI0xCAtO1Z10qsCCDrYQfONtzmO15-RopKc4'; 
         const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-        async function submitData() {
+        async function submitData() 
+        {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
             const statusText = document.getElementById('status');
-
             statusText.innerText = "Sending...";
-
-            // Send data to your 'complaint' table
             const { data, error } = await supabase
                 .from('complaint') 
                 .insert([
@@ -66,15 +60,16 @@
                     }
                 ]);
 
-            if (error) {
+            if (error) 
+            {
                 console.error(error);
                 statusText.innerText = "Error: " + error.message;
                 statusText.style.color = "red";
-            } else {
+            } 
+            else
+            {
                 statusText.innerText = "Success! Complaint Registered.";
                 statusText.style.color = "green";
-                
-                // Clear the boxes
                 document.getElementById('name').value = "";
                 document.getElementById('email').value = "";
                 document.getElementById('subject').value = "";
