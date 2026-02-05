@@ -7,9 +7,9 @@
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-    <style>
-        /* --- CSS STYLES (Government of India Theme) --- */
-        body {
+    <style>        
+        body 
+        {
             background-color: #f1f1f1;
             font-family: 'Times New Roman', Times, serif;
             font-size: 16px;
@@ -17,7 +17,8 @@
             padding: 20px;
         }
 
-        .main-container {
+        .main-container 
+        {
             max-width: 900px;
             margin: 0 auto;
             background-color: #ffffff;
@@ -25,35 +26,38 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Top Header */
-        .top-header {
+        
+        .top-header
+        {
             text-align: center;
             padding: 20px;
             background-color: white;
             border-bottom: 2px solid #ff9933;
         }
 
-        .top-header h1 {
+        .top-header h1
+        {
             margin: 5px 0;
             color: #000;
             font-size: 24px;
             text-transform: uppercase;
         }
 
-        .top-header h2 {
+        .top-header h2
+        {
             margin: 0;
             color: #555;
             font-size: 16px;
             font-weight: normal;
-        }
-
-        /* Tricolor Bar */
-        .color-bar {
+        }  
+        .color-bar 
+        {
             height: 5px;
             background: linear-gradient(to right, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%);
         }
 
-        .nav-bar {
+        .nav-bar
+        {
             background-color: #333;
             color: white;
             padding: 10px 20px;
@@ -62,7 +66,8 @@
 
         .form-content { padding: 40px; }
 
-        .form-title {
+        .form-title 
+        {
             color: #003366;
             border-bottom: 2px solid #eee;
             padding-bottom: 10px;
@@ -73,7 +78,8 @@
 
         .form-group { margin-bottom: 20px; }
 
-        label {
+        label 
+        {
             display: block;
             font-weight: bold;
             margin-bottom: 8px;
@@ -91,7 +97,8 @@
             background-color: #f9f9f9;
         }
 
-        button {
+        button
+        {
             background-color: #138808;
             color: white;
             padding: 12px 30px;
@@ -107,27 +114,29 @@
 
         button:hover { background-color: #0e6b05; }
 
-        #status {
+        #status 
+        {
             text-align: center;
             margin-top: 15px;
             font-weight: bold;
         }
-
-        /* Local Data Table Styles */
-        .data-display-section {
+        .data-display-section
+        {
             margin-top: 40px;
             border-top: 2px solid #ccc;
             padding-top: 20px;
         }
         
-        table {
+        table
+        {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
             font-size: 14px;
         }
         
-        th, td {
+        th, td
+        {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -136,7 +145,8 @@
         th { background-color: #003366; color: white; }
         tr:nth-child(even) {background-color: #f2f2f2;}
 
-        .footer {
+        .footer 
+        {
             background-color: #000;
             color: #fff;
             text-align: center;
@@ -163,7 +173,7 @@
         </div>
 
         <div class="form-content">
-            <div class="form-title">Grievance Registration Form</div>
+            <div class="form-title"> Online complaint Registration Form</div>
             <p>Fields marked with <span class="required">*</span> are mandatory.</p>
             
             <form id="complaintForm">
@@ -193,7 +203,7 @@
             </form>
 
             <div class="data-display-section">
-                <div class="form-title">Your Submitted Grievances (Local History)</div>
+                <div class="form-title">Your Submitted online complaint (Local History)</div>
                 <table id="complaintTable">
                     <thead>
                         <tr>
@@ -239,9 +249,7 @@
             }
 
             statusText.innerText = "Processing...";
-            statusText.style.color = "blue";
-
-            // --- PART 1: Save to Local Storage (The Table) ---
+            statusText.style.color = "blue";   
             const newComplaint = {
                 date: date,
                 name: name,
@@ -253,8 +261,6 @@
             let complaints = JSON.parse(localStorage.getItem('myComplaints')) || [];
             complaints.push(newComplaint);
             localStorage.setItem('myComplaints', JSON.stringify(complaints));
-
-            // --- PART 2: Send Email Notification ---
             const emailParams = {
                 name: name,
                 email: email,
@@ -265,19 +271,16 @@
             emailjs.send(emailServiceId, emailTemplateId, emailParams)
                 .then(function() {
                     statusText.innerText = "✔ Grievance Submitted & Email Sent!";
-                    statusText.style.color = "green";
-                    
-                    // Clear form
+                    statusText.style.color = "green";                    
                     document.getElementById('name').value = "";
                     document.getElementById('email').value = "";
                     document.getElementById('subject').value = "";
                     document.getElementById('message').value = "";
-
-                    loadData(); // Update the table
+                    loadData(); 
                 }, function(error) {
                     statusText.innerText = "Saved to Table, but Email Failed.";
                     console.log("Email Error:", error);
-                    loadData(); // Update the table even if email fails
+                    loadData(); 
                 });
         }
 
