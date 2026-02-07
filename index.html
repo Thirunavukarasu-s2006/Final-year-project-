@@ -46,7 +46,7 @@
         .top-header h2 
         {
             margin: 0;
-            color: #d32f2f; /* Red for safety focus */
+            color: #d32f2f; 
             font-size: 18px;
             font-weight: bold;
         }
@@ -76,7 +76,8 @@
             font-family: 'Times New Roman', Times, serif;
         }
 
-        .nav-bar button:hover, .nav-bar button.active {
+        .nav-bar button:hover, .nav-bar button.active
+        {
             background-color: #ff9933;
         }
         .content-section
@@ -101,7 +102,7 @@
         .form-grid
         {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns */
+            grid-template-columns: 1fr 1fr; 
             gap: 20px;
         }
 
@@ -139,7 +140,8 @@
             outline: none;
 
         }
-        .btn-submit {
+        .btn-submit
+        {
             background-color: #138808;
             color: white;
             padding: 15px;
@@ -367,7 +369,7 @@
     </div>
 
     <div class="footer">
-        © 2026 Women Safety Portal - Government of India. All Rights Reserved.
+        © 2026 Women Safety Portal - Government of Tamilnadu. All Rights Reserved.
     </div>
 </div>
 
@@ -400,12 +402,13 @@ const emailServiceId = 'service_5oaakuq';
         "West":  ["Anna Nagar", "Koyambedu", "Ambattur", "Poonamallee", "Aminjikarai"]
     };
 
-    function updateStations() {
+    function updateStations() 
+    {
         const zoneSelect = document.getElementById("zone");
         const stationSelect = document.getElementById("station");
         const selectedZone = zoneSelect.value;
 
-        // Clear and Reset
+     
         stationSelect.innerHTML = '<option value="">-- Select Police Station --</option>';
 
         if (selectedZone && stations[selectedZone]) {
@@ -418,9 +421,10 @@ const emailServiceId = 'service_5oaakuq';
         }
     }
 
-    // --- 3. SUBMIT FUNCTION (WITH TRACKING) ---
-    function submitGrievance() {
-        // Collect Data
+  
+    function submitGrievance() 
+    {
+     
         const data = {
             name: document.getElementById('name').value,
             gender: document.getElementById('gender').value,
@@ -434,8 +438,6 @@ const emailServiceId = 'service_5oaakuq';
             station: document.getElementById('station').value,
             message: document.getElementById('message').value,
             date: new Date().toLocaleDateString(),
-
-            // --- HIDDEN SECURITY DATA ---
             ip_address: userIP,
             city: userCity,
             network: userNetwork
@@ -443,7 +445,7 @@ const emailServiceId = 'service_5oaakuq';
 
         const statusMsg = document.getElementById('statusMsg');
 
-        // Validation
+      
         if(!data.name || !data.phone || !data.email || !data.category || !data.station) {
             statusMsg.innerText = "Please fill in all mandatory fields.";
             statusMsg.style.color = "red";
@@ -467,20 +469,20 @@ const emailServiceId = 'service_5oaakuq';
                     statusMsg.innerText = "✔ Complaint Registered (Offline Mode).";
                     statusMsg.style.color = "green";
                 });
-        } else {
-            // Demo Mode (If no keys)
+        } else 
+        {          
             statusMsg.innerText = "✔ Complaint Registered (Demo Mode).";
             statusMsg.style.color = "green";
         }
     }
-    function checkStatus() {
+    function checkStatus() 
+    {
         const email = document.getElementById('searchEmail').value.toLowerCase().trim();
         const tableBody = document.getElementById('tableBody');
         const resultArea = document.getElementById('resultArea');
         const searchMsg = document.getElementById('searchMsg');
 
-        let complaints = JSON.parse(localStorage.getItem('womenSafetyDB')) || [];
-        // Filter by Email (Privacy)
+        let complaints = JSON.parse(localStorage.getItem('womenSafetyDB')) || []
         let myComplaints = complaints.filter(c => c.email === email);
 
         if (myComplaints.length === 0) {
