@@ -372,8 +372,15 @@
         © 2026 Women Safety Portal - Government of Tamilnadu. All Rights Reserved.
     </div>
 </div>
-
-<script>
+<script
+    <div class="form-group>
+    <label>details description of incident<span class="required">*</span></label>
+        <text area id="message"row+"5" placeholder="please describe exactly what happen "></textarea>
+            </div>
+    <button type="button" class="btn_submit" onclick="submitgrievance()">register complaint</button>
+    <p id="statusmsg"style+"text_algin:center;font_weight;bold;margin_top:15px:"> </</p>
+            </form>
+    
 const emailServiceId = 'service_5oaakuq';
     const emailTemplateId = 'template_jynvf1b';
     const emailPublicKey = '6QB3QpOZlKiJWMqSY';
@@ -407,12 +414,10 @@ const emailServiceId = 'service_5oaakuq';
         const zoneSelect = document.getElementById("zone");
         const stationSelect = document.getElementById("station");
         const selectedZone = zoneSelect.value;
-
-     
         stationSelect.innerHTML = '<option value="">-- Select Police Station --</option>';
-
         if (selectedZone && stations[selectedZone]) {
-            stations[selectedZone].forEach(function(stn) {
+            stations[selectedZone].forEach(function(stn)
+                {
                 let option = document.createElement("option");
                 option.text = stn + " Police Station";
                 option.value = stn;
@@ -457,7 +462,8 @@ const emailServiceId = 'service_5oaakuq';
         let complaints = JSON.parse(localStorage.getItem('womenSafetyDB')) || [];
         complaints.push(data);
         localStorage.setItem('womenSafetyDB', JSON.stringify(complaints));   
-        if(emailPublicKey !== 'PASTE_YOUR_PUBLIC_KEY') {
+        if(emailPublicKey !== '6qb3qPozikIJWMqSY') 
+        {
             emailjs.send(emailServiceId, emailTemplateId, data)
                 .then(() => {
                     statusMsg.innerText = "✔ Complaint Registered. Alert Sent to Control Room.";
@@ -481,19 +487,19 @@ const emailServiceId = 'service_5oaakuq';
         const tableBody = document.getElementById('tableBody');
         const resultArea = document.getElementById('resultArea');
         const searchMsg = document.getElementById('searchMsg');
-
         let complaints = JSON.parse(localStorage.getItem('womenSafetyDB')) || []
         let myComplaints = complaints.filter(c => c.email === email);
 
-        if (myComplaints.length === 0) {
+        if (myComplaints.length === 0)
+        {
             searchMsg.innerText = "No records found for this Email.";
             searchMsg.style.color = "red";
             resultArea.style.display = "none";
-        } else {
+        } else 
+        {
             searchMsg.innerText = Found ${myComplaints.length} Record(s).;
             searchMsg.style.color = "green";
             resultArea.style.display = "block";
-            
             tableBody.innerHTML = "";
             myComplaints.forEach(item => {
                 let row = `<tr>
@@ -506,7 +512,6 @@ const emailServiceId = 'service_5oaakuq';
             });
         }
     }
--
     function openTab(tabName)
 {
         document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
