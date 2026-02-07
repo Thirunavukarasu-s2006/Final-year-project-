@@ -372,20 +372,10 @@
         © 2026 Women Safety Portal - Government of Tamilnadu. All Rights Reserved.
     </div>
 </div>
-<script
-    <div class="form-group>
-    <label>details description of incident<span class="required">*</span></label>
-        <text area id="message"row+"5" placeholder="please describe exactly what happen "></textarea>
-            </div>
-    <button type="button" class="btn_submit" onclick="submitgrievance()">register complaint</button>
-    <p id="statusmsg"style+"text_algin:center;font_weight;bold;margin_top:15px:"> </</p>
-            </form>
-    
 const emailServiceId = 'service_5oaakuq';
     const emailTemplateId = 'template_jynvf1b';
     const emailPublicKey = '6QB3QpOZlKiJWMqSY';
-
-    if(emailPublicKey !== 'PASTE_YOUR_PUBLIC_KEY')
+    if(emailPublicKey !== '6QB3QpOZlKiJWMqSY')
     {
         emailjs.init(emailPublicKey);
     }
@@ -425,8 +415,6 @@ const emailServiceId = 'service_5oaakuq';
             });
         }
     }
-
-  
     function submitGrievance() 
     {
      
@@ -449,14 +437,12 @@ const emailServiceId = 'service_5oaakuq';
         };
 
         const statusMsg = document.getElementById('statusMsg');
-
-      
-        if(!data.name || !data.phone || !data.email || !data.category || !data.station) {
+        if(!data.name || !data.phone || !data.email || !data.category || !data.station) 
+        {
             statusMsg.innerText = "Please fill in all mandatory fields.";
             statusMsg.style.color = "red";
             return;
         }
-
         statusMsg.innerText = "Verifying Details & Submitting...";
         statusMsg.style.color = "blue";
         let complaints = JSON.parse(localStorage.getItem('womenSafetyDB')) || [];
