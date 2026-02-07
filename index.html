@@ -348,13 +348,10 @@
 
     <div id="status" class="content-section">
         <div class="section-title">Check My Complaint Status</div>
-        <p>Enter your Email ID to view the status of your complaints.</p>
-        
+        <p>Enter your Email ID to view the status of your complaints.</p> 
         <input type="email" id="searchEmail" placeholder="Enter Registered Email" style="width: 60%; padding: 10px;">
         <button onclick="checkStatus()" style="padding: 10px 20px; background: #003366; color: white; border: none; cursor: pointer;">Search</button>
-        
         <p id="searchMsg" style="margin-top: 10px; font-weight: bold;"></p>
-
         <div id="resultArea" style="display:none; margin-top:20px;">
             <table>
                 <thead>
@@ -375,11 +372,11 @@
     </div>
 </div>
 const emailServiceId = 'service_5oaakuq';
-    const emailTemplateId = 'template_jynvf1b';
+    const emailTemplateId = 'template_5oaakuq';
     const emailPublicKey = '6QB3QpOZlKiJWMqSY';
     if(emailPublicKey !== '6QB3QpOZlKiJWMqSY')
     {
-        emailjs.init(emailPublicKey);
+        emailjs.init('6QB3QpOZlKiJWMqSY');
     }
     let userIP = "Unknown";
     let userCity = "Unknown";
