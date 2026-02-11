@@ -1,364 +1,124 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Women Safety & Grievance Portal - Govt of Tamilnadu</title>
+    <title>Women Safety Portal - Govt of Tamil Nadu</title>
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <style>
-        body 
-        {
-            background-color: #f0f2f5;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 16px;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .main-container
-        {
-            max-width: 950px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-            min-height: 900px;
-        }
-
-        .top-header
-        {
-            text-align: center;
-            padding: 25px;
-            background: white;
-            border-bottom: 4px solid #ff9933;
-        }
-
-        .top-header h1 
-        {
-            margin: 5px 0;
-            color: #003366;
-            font-size: 26px;
-            text-transform: uppercase;
-        }
-
-        .top-header h2 
-        {
-            margin: 0;
-            color: #d32f2f; 
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .color-bar 
-        {
-            height: 6px;
-            background: linear-gradient(to right, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%);
-        }
-
-        .nav-bar 
-        {
-            background-color: #003366;
-            display: flex;
-            justify-content: center;
-        }
-
-        .nav-bar button
-        {
-            background-color: #003366;
-            border: none;
-            color: white;
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        .nav-bar button:hover, .nav-bar button.active
-        {
-            background-color: #ff9933;
-        }
-        .content-section
-        {
-            padding: 40px;
-            display: none;
-        }
+        /* --- CSS STYLES --- */
+        body { font-family: 'Times New Roman', serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border: 1px solid #ccc; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         
-        .show-section { display: block; }
+        /* Header */
+        .header { text-align: center; border-bottom: 4px solid #ff9933; padding-bottom: 20px; margin-bottom: 20px; }
+        .header h1 { margin: 0; color: #003366; }
+        .header h2 { margin: 5px 0 0; color: #d32f2f; font-size: 18px; }
 
-        .section-title
-        {
-            color: #003366;
-            font-size: 20px;
-            font-weight: bold;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-            margin-top: 30px;
+        /* Navigation */
+        .nav { display: flex; justify-content: center; background: #003366; margin-bottom: 20px; }
+        .nav button { background: #003366; color: white; border: none; padding: 15px 30px; font-size: 16px; cursor: pointer; font-weight: bold; }
+        .nav button:hover, .nav button.active { background: #ff9933; }
+
+        /* Forms */
+        .section { display: none; }
+        .active-section { display: block; }
+        
+        label { display: block; font-weight: bold; margin-top: 15px; color: #333; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+        
+        /* Submit Button */
+        .btn-submit { 
+            background-color: #138808; color: white; 
+            padding: 15px; font-size: 18px; font-weight: bold; 
+            border: none; cursor: pointer; width: 100%; margin-top: 25px; 
         }
-
-        .form-grid
-        {
-            display: grid;
-            grid-template-columns: 1fr 1fr; 
-            gap: 20px;
-        }
-
-        .full-width
-        {
-            grid-column: span 2;
-        }
-
-        .form-group { margin-bottom: 15px; }
-
-        label 
-        {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        input, select, textarea 
-        {
-            width: 100%;
-            padding: 10px;
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 16px;
-            border: 1px solid #aaa;
-            border-radius: 4px;
-            background-color: #fcfcfc;
-            box-sizing: border-box;
-        }
-
-        input:focus, select:focus, textarea:focus
-        {
-            border-color: #003366;
-            background-color: #fff;
-            outline: none;
-
-        }
-        .btn-submit
-        {
-            background-color: #138808;
-            color: white;
-            padding: 15px;
-            font-size: 20px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-            text-transform: uppercase;
-        }
-
         .btn-submit:hover { background-color: #0e6b05; }
-        table
-        {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        
-        th, td
-        {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        
+
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background-color: #003366; color: white; }
-        
-        .required { color: red; }
-        
-        .footer 
-        {
-            background-color: #222;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
 
-<div class="main-container">
-    <div class="color-bar"></div>
-    
-    <div class="top-header">
-        <h1>Government of Tamilnadu</h1>
-        <h2>Women Safety & Integrated Grievance Portal</h2>
+<div class="container">
+    <div class="header">
+        <h1>Government of India</h1>
+        <h2>Women Safety & Grievance Portal</h2>
     </div>
 
-    <div class="nav-bar">
+    <div class="nav">
+        <button class="tab-link active" onclick="openTab('register')">Lodge Complaint</button>
+        <button class="tab-link" onclick="openTab('status')">Check Status</button>
+    </div>
+    <div class="nav">
         <button class="tab-link active" onclick="openTab('register')">Lodge Complaint</button>
         <button class="tab-link" onclick="openTab('status')">Check Status</button>
     </div>
 
-    <div id="register" class="content-section show-section">
+    <div id="register" class="section active-section">
         <form id="grievanceForm">
             
-            <div class="section-title">1. Personal Information</div>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Full Name <span class="required">*</span></label>
-                    <input type="text" id="name" placeholder="Enter Name">
-                </div>
-                
-                <div class="form-group">
-                    <label>Gender <span class="required">*</span></label>
-                    <select id="gender">
-                        <option value="">-- Select --</option>
-                        <option value="Female">Female</option>
-                        <option value="Male">Male</option>
-                        <option value="Transgender">Transgender</option>
-                    </select>
-                </div>
+            <label>Full Name *</label>
+            <input type="text" id="name" placeholder="Enter Name">
 
-                <div class="form-group">
-                    <label>Mobile Number <span class="required">*</span></label>
-                    <input type="text" id="phone" placeholder="Your 10-digit number">
-                </div>
+            <label>Mobile Number *</label>
+            <input type="text" id="phone" placeholder="10-digit Mobile Number">
+            
+            <label>Email ID (For Tracking) *</label>
+            <input type="email" id="email" placeholder="Enter Email">
 
-                <div class="form-group">
-                    <label>Parents' / Guardian Mobile <span class="required">*</span></label>
-                    <input type="text" id="parentPhone" placeholder="Emergency contact number">
-                </div>
+            <label>Nature of Complaint *</label>
+            <select id="category">
+                <option value="">-- Select Category --</option>
+                <option value="Domestic Violence">Domestic Violence</option>
+                <option value="Harassment">Harassment</option>
+                <option value="Cyber Crime">Cyber Crime</option>
+                <option value="Dowry">Dowry</option>
+                <option value="Other">Other</option>
+            </select>
 
-                <div class="form-group">
-                    <label>Email ID (For Status Check) <span class="required">*</span></label>
-                    <input type="email" id="email" placeholder="Enter valid Email">
-                </div>
+            <label>Select Zone (Chennai) *</label>
+            <select id="zone" onchange="updateStations()">
+                <option value="">-- Select Zone --</option>
+                <option value="North">North Chennai</option>
+                <option value="South">South Chennai</option>
+                <option value="East">East Chennai</option>
+                <option value="West">West Chennai</option>
+            </select>
 
-          <div class="form-group">
-                    <label>District (Tamil Nadu) <span class="required">*</span></label>
-                    <select id="district">
-                        <option value="">-- Select District --</option>
-                        <option value="Ariyalur">Ariyalur</option>
-                        <option value="Chengalpattu">Chengalpattu</option>
-                        <option value="Chennai">Chennai</option>
-                        <option value="Coimbatore">Coimbatore</option>
-                        <option value="Cuddalore">Cuddalore</option>
-                        <option value="Dharmapuri">Dharmapuri</option>
-                        <option value="Dindigul">Dindigul</option>
-                        <option value="Erode">Erode</option>
-                        <option value="Kallakurichi">Kallakurichi</option>
-                        <option value="Kancheepuram">Kancheepuram</option>
-                        <option value="Kanyakumari">Kanyakumari</option>
-                        <option value="Karur">Karur</option>
-                        <option value="Krishnagiri">Krishnagiri</option>
-                        <option value="Madurai">Madurai</option>
-                        <option value="Nagapattinam">Nagapattinam</option>
-                        <option value="Namakkal">Namakkal</option>
-                        <option value="Nilgiris">Nilgiris</option>
-                        <option value="Perambalur">Perambalur</option>
-                        <option value="Pudukkottai">Pudukkottai</option>
-                        <option value="Ramanathapuram">Ramanathapuram</option>
-                        <option value="Ranipet">Ranipet</option>
-                        <option value="Salem">Salem</option>
-                        <option value="Sivaganga">Sivaganga</option>
-                        <option value="Tenkasi">Tenkasi</option>
-                        <option value="Thanjavur">Thanjavur</option>
-                        <option value="Theni">Theni</option>
-                        <option value="Thoothukudi">Thoothukudi</option>
-                        <option value="Tiruchirappalli">Tiruchirappalli</option>
-                        <option value="Tirunelveli">Tirunelveli</option>
-                        <option value="Tirupathur">Tirupathur</option>
-                        <option value="Tiruppur">Tiruppur</option>
-                        <option value="Tiruvallur">Tiruvallur</option>
-                        <option value="Tiruvannamalai">Tiruvannamalai</option>
-                        <option value="Tiruvarur">Tiruvarur</option>
-                        <option value="Vellore">Vellore</option>
-                        <option value="Viluppuram">Viluppuram</option>
-                        <option value="Virudhunagar">Virudhunagar</option>
-                    </select>
-                </div>
-                
-                <div class="form-group full-width">
-                    <label>Full Address <span class="required">*</span></label>
-                    <textarea id="address" rows="2" placeholder="Enter your residential address"></textarea>
-                </div>
-            </div>
+            <label>Select Police Station *</label>
+            <select id="station">
+                <option value="">-- Select Zone First --</option>
+            </select>
 
-            <div class="section-title">2. Complaint / Incident Details</div>
-            <div class="form-group">
-                <label>Nature of Complaint (Select Incident) <span class="required">*</span></label>
-                <select id="category" style="background-color: #fff0f0; border-color: #ffcccc;">
-                    <option value="">-- Select Incident Type --</option>
-                    <optgroup label="Marriage & Family Issues">
-                        <option value="Child Marriage">Child Marriage</option>
-                        <option value="Forced Marriage">Forced Marriage</option>
-                        <option value="Dowry Harassment">Dowry Harassment</option>
-                        <option value="Domestic Violence">Domestic Violence</option>
-                    </optgroup>
-                    <optgroup label="Crimes Against Women/Children">
-                        <option value="POCSO / Child Abuse">POCSO / Child Abuse</option>
-                        <option value="Acid Attack">Acid Attack</option>
-                        <option value="Kidnapping / Abduction">Kidnapping / Abduction</option>
-                        <option value="Chain Snatching / Robbery">Chain Snatching / Robbery</option>
-                        <option value="Attack by Men / Physical Assault">Attack by Men / Physical Assault</option>
-                    </optgroup>
-                    <optgroup label="Cyber & Social Abuse">
-                        <option value="Deepfake Abuse">Deepfake Abuse</option>
-                        <option value="Body Shaming">Body Shaming</option>
-                        <option value="Online Misogyny / Trolling">Online Misogyny / Trolling</option>
-                        <option value="Cyber Stalking">Cyber Stalking</option>
-                    </optgroup>
-                </select>
-            </div>
-
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Select Zone (Chennai) <span class="required">*</span></label>
-                    <select id="zone" onchange="updateStations()">
-                        <option value="">-- Select Zone --</option>
-                        <option value="North">North Chennai</option>
-                        <option value="South">South  Chennai </option>
-                        <option value="East">East  Chennai(Central/Marina)</option>
-                        <option value="West">West  Chennai</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Select Police Station <span class="required">*</span></label>
-                    <select id="station">
-                        <option value="">-- Select Zone First --</option>
-                        <option value="north chennai">H3 Tondiarpet Police Station, N1 Royapuram Police Station, and P1 Pulianthope Police Station</option>
-                        <option value="south chennai">J-1 Saidapet, J-5 Sastri Nagar, J-2 Adyar, R-4 T Nagar, and S-10 Pallikaranai</option>
-                        <option value=east chennai> Selaiyur, Tambaram Women's Police Station, and St. Thomas Mount (s1)</option>
-                        <option value=west chennai> Ashok Nagar (R3), Anna Nagar (K4), Aminjikarai (K3), Vadapalani (R8), and Thirumangalam (V5) </option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Detailed Description of Incident <span class="required">*</span></label>
-                <textarea id="message" rows="5" placeholder="Please describe exactly what happened..."></textarea>
-            </div>
+            <label>Description *</label>
+            <textarea id="message" rows="4" placeholder="Describe the incident..."></textarea>
 
             <button type="button" class="btn-submit" onclick="submitGrievance()">Register Complaint</button>
             <p id="statusMsg" style="text-align: center; font-weight: bold; margin-top: 15px;"></p>
 
         </form>
     </div>
-
-    <div id="status" class="content-section">
-        <div class="section-title">Check My Complaint Status</div>
-        <p>Enter your Email ID to view the status of your complaints.</p> 
-        <input type="email" id="searchEmail" placeholder="Enter Registered Email" style="width: 60%; padding: 10px;">
-        <button onclick="checkStatus()" style="padding: 10px 20px; background: #003366; color: white; border: none; cursor: pointer;">Search</button>
-        <p id="searchMsg" style="margin-top: 10px; font-weight: bold;"></p>
-        <div id="resultArea" style="display:none; margin-top:20px;">
+    <div id="status" class="section">
+        <h3>Check Complaint Status</h3>
+        <input type="email" id="searchEmail" placeholder="Enter your Email ID">
+        <button onclick="checkStatus()" style="background:#003366; color:white; padding:10px 20px; border:none; margin-top:10px; cursor:pointer;">Search</button>
+        
+        <p id="searchMsg" style="margin-top:10px; font-weight:bold;"></p>
+        
+        <div id="resultArea" style="display:none;">
             <table>
                 <thead>
                     <tr>
                         <th>Date</th>
                         <th>Category</th>
-                        <th>Police Station</th>
+                        <th>Station</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -366,147 +126,112 @@
             </table>
         </div>
     </div>
-
-    <div class="footer">
-        © 2026 Women Safety Portal - Government of Tamilnadu. All Rights Reserved.
-    </div>
 </div>
-const emailServiceId = 'service_5oaakuq';
-    const emailTemplateId = 'template_5oaakuq';
-    const emailPublicKey = '6QB3QpOZlKiJWMqSY';
-    if(emailPublicKey !== '6QB3QpOZlKiJWMqSY')
-    {
-        emailjs.init('6QB3QpOZlKiJWMqSY');
-    }
-    let userIP = "Unknown";
-    let userCity = "Unknown";
-    let userNetwork = "Unknown";
-    fetch('https://ipapi.co/json/')
-        .then(response => response.json())
-        .then(data => {
-            userIP = data.ip;
-            userCity = data.city + ", " + data.region;
-            userNetwork = data.org;
-            console.log("Security Active: User detected from " + userCity);
-        })
-        .catch(error => console.log("Tracking failed:", error));
 
+<script>
+    // 1. PASTE YOUR KEYS HERE
+    const emailServiceId = 'service_5oaakuq';
+    const emailTemplateId = 'template_jynvf1b';
+    const emailPublicKey = '6QB3QpOZLkiJWMqSY';
+
+    // Initialize EmailJS
+    try { emailjs.init(emailPublicKey); } catch(e) { console.log("EmailJS Error"); }
+
+    // 2. POLICE STATION LOGIC
     const stations = {
-        "North": ["Royapuram", "Tondiarpet", "Washermenpet", "Flower Bazaar", "Seven Wells"],
-        "South": ["Adyar", "Guindy", "T. Nagar", "Saidapet", "Thiruvanmiyur"],
-        "East":  ["Marina Beach", "Mylapore", "Triplicane", "Ice House", "Royapettah"],
-        "West":  ["Anna Nagar", "Koyambedu", "Ambattur", "Poonamallee", "Aminjikarai"]
+        "North": ["Royapuram", "Tondiarpet", "Washermenpet"],
+        "South": ["Adyar", "Guindy", "T. Nagar"],
+        "East":  ["Marina", "Mylapore", "Triplicane"],
+        "West":  ["Anna Nagar", "Ambattur", "Koyambedu"]
     };
 
-    function updateStations() 
-    {
-        const zoneSelect = document.getElementById("zone");
+    function updateStations() {
+        const zone = document.getElementById("zone").value;
         const stationSelect = document.getElementById("station");
-        const selectedZone = zoneSelect.value;
-        stationSelect.innerHTML = '<option value="">-- Select Police Station --</option>';
-        if (selectedZone && stations[selectedZone]) {
-            stations[selectedZone].forEach(function(stn)
-                {
-                let option = document.createElement("option");
-                option.text = stn + " Police Station";
-                option.value = stn;
-                stationSelect.add(option);
+        stationSelect.innerHTML = '<option value="">-- Select Station --</option>';
+        if(zone && stations[zone]) {
+            stations[zone].forEach(stn => {
+                let opt = document.createElement("option");
+                opt.value = stn;
+                opt.text = stn;
+                stationSelect.add(opt);
             });
         }
     }
-    function submitGrievance() 
-    {
-     
+  // 3. SUBMIT FUNCTION
+    function submitGrievance() {
+        alert("Button Clicked! Checking data...");
+
+        // Get Values
         const data = {
             name: document.getElementById('name').value,
-            gender: document.getElementById('gender').value,
             phone: document.getElementById('phone').value,
-            parentPhone: document.getElementById('parentPhone').value,
-            email: document.getElementById('email').value.toLowerCase().trim(),
-            district: document.getElementById('district').value,
-            address: document.getElementById('address').value,
+            email: document.getElementById('email').value,
             category: document.getElementById('category').value,
             zone: document.getElementById('zone').value,
             station: document.getElementById('station').value,
             message: document.getElementById('message').value,
-            date: new Date().toLocaleDateString(),
-            ip_address: userIP,
-            city: userCity,
-            network: userNetwork
+            date: new Date().toLocaleDateString()
         };
 
-        const statusMsg = document.getElementById('statusMsg');
-        if(!data.name || !data.phone || !data.email || !data.category || !data.station) 
-        {
-            statusMsg.innerText = "Please fill in all mandatory fields.";
-            statusMsg.style.color = "red";
+        // Validate
+        if(!data.name || !data.phone || !data.email || !data.station) {
+            alert("⚠️ Please fill all fields!");
             return;
         }
-        statusMsg.innerText = "Verifying Details & Submitting...";
-        statusMsg.style.color = "blue";
-        let complaints = JSON.parse(localStorage.getItem('womenSafetyDB')) || [];
-        complaints.push(data);
-        localStorage.setItem('womenSafetyDB', JSON.stringify(complaints));   
-        if(emailPublicKey !== '6qb3qPozikIJWMqSY') 
-        {
+
+        // Save to Local Storage
+        let db = JSON.parse(localStorage.getItem('womenSafetyDB')) || [];
+        db.push(data);
+        localStorage.setItem('womenSafetyDB', JSON.stringify(db));
+
+        // Try Sending Email
+        const statusMsg = document.getElementById('statusMsg');
+        statusMsg.innerText = "Sending...";
+        
+        if(emailPublicKey === '6QB3QpOZLkiJWMqSY') {
+            alert("✅ Data Saved! (Email not sent - Keys missing)");
+            statusMsg.innerText = "✔ Saved Successfully (No Email)";
+            statusMsg.style.color = "green";
+        } else {
             emailjs.send(emailServiceId, emailTemplateId, data)
                 .then(() => {
-                    statusMsg.innerText = "✔ Complaint Registered. Alert Sent to Control Room.";
-                    statusMsg.style.color = "green";
-                    document.getElementById("grievanceForm").reset();
-                })
-                .catch((err) => {
-                    console.log("Email Failed", err);
-                    statusMsg.innerText = "✔ Complaint Registered (Offline Mode).";
+                    alert("✅ Success! Email Sent.");
+                    statusMsg.innerText = "✔ Complaint Registered!";
                     statusMsg.style.color = "green";
                 });
-        } else 
-        {          
-            statusMsg.innerText = "✔ Complaint Registered (Demo Mode).";
-            statusMsg.style.color = "green";
         }
     }
-    function checkStatus() 
-    {
-        const email = document.getElementById('searchEmail').value.toLowerCase().trim();
+
+    // 4. CHECK STATUS FUNCTION
+    function checkStatus() {
+        const email = document.getElementById('searchEmail').value;
+        const db = JSON.parse(localStorage.getItem('womenSafetyDB')) || [];
+        const myData = db.filter(item => item.email === email);
+        
         const tableBody = document.getElementById('tableBody');
         const resultArea = document.getElementById('resultArea');
-        const searchMsg = document.getElementById('searchMsg');
-        let complaints = JSON.parse(localStorage.getItem('womenSafetyDB')) || []
-        let myComplaints = complaints.filter(c => c.email === email);
-
-        if (myComplaints.length === 0)
-        {
-            searchMsg.innerText = "No records found for this Email.";
-            searchMsg.style.color = "red";
-            resultArea.style.display = "none";
-        } else 
-        {
-            searchMsg.innerText = Found ${myComplaints.length} Record(s).;
-            searchMsg.style.color = "green";
-            resultArea.style.display = "block";
+        
+        if(myData.length === 0) {
+            document.getElementById('searchMsg').innerText = "No records found.";
+            resultArea.style.display = 'none';
+        } else {
+            document.getElementById('searchMsg').innerText = "Found records:";
+            resultArea.style.display = 'block';
             tableBody.innerHTML = "";
-            myComplaints.forEach(item => {
-                let row = `<tr>
-                    <td>${item.date}</td>
-                    <td>${item.category}</td>
-                    <td>${item.station} (${item.zone})</td>
-                    <td style="color:red; font-weight:bold;">Action Pending</td>
-                </tr>`;
-                tableBody.innerHTML += row;
+            myData.forEach(row => {
+                tableBody.innerHTML += <tr><td>${row.date}</td><td>${row.category}</td><td>${row.station}</td><td style='color:red'>Pending</td></tr>;
             });
         }
     }
-    function openTab(tabName)
-{
-        document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+ 5. TAB SWITCHER
+    function openTab(tabName) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active-section'));
         document.querySelectorAll('.tab-link').forEach(b => b.classList.remove('active'));
-        document.getElementById(tabName).style.display = 'block';
+        document.getElementById(tabName).classList.add('active-section');
         event.currentTarget.classList.add('active');
     }
 </script>
 
 </body>
 </html>
-         
-               
