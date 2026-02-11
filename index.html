@@ -48,7 +48,7 @@
 
 <div class="container">
     <div class="header">
-        <h1>Government of India</h1>
+        <h1>Government of Tamilnadu</h1>
         <h2>Women Safety & Grievance Portal</h2>
     </div>
 
@@ -56,11 +56,6 @@
         <button class="tab-link active" onclick="openTab('register')">Lodge Complaint</button>
         <button class="tab-link" onclick="openTab('status')">Check Status</button>
     </div>
-    <div class="nav">
-        <button class="tab-link active" onclick="openTab('register')">Lodge Complaint</button>
-        <button class="tab-link" onclick="openTab('status')">Check Status</button>
-    </div>
-
     <div id="register" class="section active-section">
         <form id="grievanceForm">
             
@@ -78,9 +73,7 @@
                 <option value="">-- Select Category --</option>
                 <option value="Domestic Violence">Domestic Violence</option>
                 <option value="Harassment">Harassment</option>
-                <option value="Cyber Crime">Cyber Crime</option>
                 <option value="Dowry">Dowry</option>
-                <option value="Other">Other</option>
             </select>
 
             <label>Select Zone (Chennai) *</label>
@@ -91,12 +84,6 @@
                 <option value="East">East Chennai</option>
                 <option value="West">West Chennai</option>
             </select>
-
-            <label>Select Police Station *</label>
-            <select id="station">
-                <option value="">-- Select Zone First --</option>
-            </select>
-
             <label>Description *</label>
             <textarea id="message" rows="4" placeholder="Describe the incident..."></textarea>
 
